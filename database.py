@@ -3,11 +3,11 @@ import pymysql
 def get_connection():
     try:
         connection = pymysql.connect(
-            host="",
-            user="",
-            password="",
-            database="",
-            charset=" ",
+            host="mysql-noalam.alwaysdata.net",
+            user="noalam",
+            password="l%S2BC1el",
+            database="noalam_securite",
+            charset="utf8",
             cursorclass=pymysql.cursors.DictCursor
         )
         return connection
