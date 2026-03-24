@@ -6,7 +6,7 @@ def get_connection():
             host="mysql-noalam.alwaysdata.net",
             user="noalam",
             password="l%S2BC1el",
-            database="noalam_securite",
+            database="noalam_securite_nn",
             charset="utf8",
             cursorclass=pymysql.cursors.DictCursor
         )

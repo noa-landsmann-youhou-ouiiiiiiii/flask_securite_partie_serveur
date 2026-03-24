@@ -90,7 +90,7 @@ def demande_autorisation():
     co = get_connection()
     if co:
         curseur = co.cursor()
-        requete = f"SELECT nom, {nomZone} FROM users WHERE code_carte=%s"
+        requete = f"SELECT id_user,id_zone  FROM users_zones WHERE code_carte=%s"
         curseur.execute(requete, uid)
         reponse = curseur.fetchone()
         print("Reponse de la Bdd:",reponse)
