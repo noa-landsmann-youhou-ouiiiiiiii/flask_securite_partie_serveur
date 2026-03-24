@@ -98,9 +98,9 @@ def demande_autorisation():
         co.close()
 
         if reponse==None:
-            reponseJson = {"nom": uid, "zone": zone, "autorisation": reponse[nomZone]}
+            reponseJson = {"nom": uid, "zone": zone, "autorisation": 0}
         else:
-            reponseJson = {"nom": reponse['nom'], "zone": zone, "autorisation": reponse[nomZone]}
+            reponseJson = {"nom": reponse['nom'], "zone": zone, "autorisation": 1}
         print(reponseJson)
         return reponseJson
 
