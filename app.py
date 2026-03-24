@@ -1,4 +1,3 @@
-import pymysql
 from flask import Flask, render_template ,request
 from database import get_connection
 
@@ -99,8 +98,9 @@ def demande_autorisation():
         co.close()
 
         if reponse==None:
-            return "inconnu"
-        reponseJson = {"nom": reponse['nom'], "zone": zone, "autorisation": reponse[nomZone]}
+            reponseJson = {"nom": uid, "zone": zone, "autorisation": reponse[nomZone]}
+        else:
+            reponseJson = {"nom": reponse['nom'], "zone": zone, "autorisation": reponse[nomZone]}
         print(reponseJson)
         return reponseJson
 
