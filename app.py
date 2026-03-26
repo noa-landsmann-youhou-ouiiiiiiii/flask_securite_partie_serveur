@@ -94,9 +94,6 @@ def demande_autorisation():
         curseur.execute(requete, uid)
         reponse = curseur.fetchone()
         print("Reponse de la Bdd:",reponse)
-        requete_2=(f"INSERT INTO logs_acces(`id_user`, `id_zone`,`acces_autorise`)"
-                   f"SELECT id,2,1 FROM users WHERE code_carte={uid}")
-        curseur.execute(requete_2)
         curseur.close()
         co.close()
 
