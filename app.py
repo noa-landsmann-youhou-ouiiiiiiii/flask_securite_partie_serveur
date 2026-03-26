@@ -92,7 +92,7 @@ def demande_autorisation():
                    "JOIN users_zones ON users.id=users_zones.id_user "
                    "WHERE id_zone=%s AND code_carte=%s")
         print(requete)
-        curseur.execute(requete, (zone, uid))
+        curseur.execute(requete,(zone, uid))
         reponse = curseur.fetchone()
         print (reponse)
 
