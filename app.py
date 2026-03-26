@@ -81,29 +81,26 @@ def demande_autorisation():
     #print("Headers:", request.headers)
     #print("Raw data:", request.get_data())
     #print("Form:", request.form)
+    zones = {1:"z_bureaux", 2:"z_stock", 3:"z_info", 4:"z_technique"}
     uid = request.form['uid']
     zone = request.form['zone']
+    nomZone=zones[int(zone)]
     print("******Parametres reçus du lecteur de badge: zone=",zone,"uid=",uid,"******")
+    print("Nom de la zone d'implantation du lecteur:",nomZone)
     co = get_connection()
     if co:
         curseur = co.cursor()
-        requete = ("SELECT nom,prenom,code_carte,id_zone "
-                   "FROM `users` "
-                   "JOIN users_zones ON users.id=users_zones.id_user "
-                   "WHERE id_zone=%s AND code_carte=%s")
-        print(requete)
-        curseur.execute(requete,(zone, uid))
+        requete = f"SELECT id_user,id_zone  FROM users_zones WHERE code_carte=%s"
+        curseur.execute(requete, uid)
         reponse = curseur.fetchone()
-        print (reponse)
+        print("Reponse de la Bdd:",reponse)
+        curseur.close()
+        co.close()
 
         if reponse==None:
             reponseJson = {"nom": uid, "zone": zone, "autorisation": 0}
-            return reponseJson
         else:
-            reponseJson = {"nom": f"{reponse['prenom']} {reponse['nom']}", "zone": zone, "autorisation": 1}
-            print("Reponse de la Bdd:", reponse)
-            curseur.close()
-            co.close()
+            reponseJson = {"nom": reponse['nom'], "zone": zone, "autorisation": 1}
         print(reponseJson)
         return reponseJson
 
